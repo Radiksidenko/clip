@@ -10,6 +10,7 @@ import Foundation
 import Cocoa
 
 class PasswordViewController: NSViewController {
+    @IBOutlet weak var notes: NSButton!
     @IBOutlet weak var tableView: NSTableView!
     
     let makes = ["Ford", "Subaru", "Ford", "Toyota", "Chevy", "Subaru", "Ford"]
@@ -17,9 +18,20 @@ class PasswordViewController: NSViewController {
     let years = [2018, 2011, 1977, 1994, 1991, 2001, 1998]
     override func viewDidLoad() {
         super.viewDidLoad()
+        notes.title = "Notes"
         tableView.register(NSNib(nibNamed: "LoginCell", bundle: nil),
                            forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LoginCellView"))
     }
+    
+    @IBAction func notesClick(_ sender: Any) {
+        let vcStores = self.viewStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("ViewController"))
+            as! NSViewController
+        self.view.window?.contentViewController = vcStores
+    }
+    private var viewStoryboard: NSStoryboard {
+        return NSStoryboard(name: "Main", bundle: nil)
+    }
+    
 }
 
 extension PasswordViewController: NSTableViewDataSource {
