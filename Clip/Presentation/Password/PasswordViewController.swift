@@ -15,7 +15,11 @@ class PasswordViewController: NSViewController {
     let makes = ["Ford", "Subaru", "Ford", "Toyota", "Chevy", "Subaru", "Ford"]
     let models = ["Mustang", "Forester", "Bronco", "Tacoma", "Blazer", "Outback", "Ranger"]
     let years = [2018, 2011, 1977, 1994, 1991, 2001, 1998]
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(NSNib(nibNamed: "LoginCell", bundle: nil),
+                           forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LoginCellView"))
+    }
 }
 
 extension PasswordViewController: NSTableViewDataSource {
@@ -34,8 +38,11 @@ extension PasswordViewController: NSTableViewDelegate {
         if let cell = tableView.makeView(withIdentifier: column.identifier, owner: nil) as? NSTableCellView {
             
             if column.identifier.rawValue == "Login" {
-                cell.textField?.stringValue = makes[row]
-                return cell
+                guard let cel = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LoginCellView"), owner: nil) as? LoginCellView else {
+                    return nil
+                }
+                cel.text.stringValue = makes[row]
+                return cel
             }
             
             if column.identifier.rawValue == "Password" {
