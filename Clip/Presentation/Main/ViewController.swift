@@ -15,10 +15,10 @@ class ViewController: NSViewController {
     @IBOutlet private weak var clipboardButton: NSButton!
     @IBOutlet private weak var copyClipboardButton: NSButton!
     @IBOutlet private weak var scrollableContentTextView: NSScrollView!
+    
+    
     @IBOutlet weak var passwordButton: NSButton!
     
-    @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var table: NSScrollView!
     // MARK: - Properties
     
     private lazy var contentTextView: NSTextView = {
@@ -70,48 +70,12 @@ class ViewController: NSViewController {
     }
     
     @IBAction func passWord(_ sender: Any) {
-        scrollableContentTextView.isHidden = !scrollableContentTextView.isHidden
-        table.isHidden = !table.isHidden
+        let vcStores = self.passwordStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("PasswordViewController"))
+            as! NSViewController
+        self.view.window?.contentViewController = vcStores
     }
     
-    let makes = ["Ford", "Subaru", "Ford", "Toyota", "Chevy", "Subaru", "Ford"]
-    let models = ["Mustang", "Forester", "Bronco", "Tacoma", "Blazer", "Outback", "Ranger"]
-    let years = [2018, 2011, 1977, 1994, 1991, 2001, 1998]
-}
-
-extension ViewController: NSTableViewDataSource {
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return makes.count
+    private var passwordStoryboard: NSStoryboard {
+        return NSStoryboard(name: "Password", bundle: nil)
     }
 }
-extension ViewController: NSTableViewDelegate {
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard let column = tableColumn else { return nil }
-        
-        if let cell = tableView.makeView(withIdentifier: column.identifier, owner: nil) as? NSTableCellView {
-            
-            if column.identifier.rawValue == "MakeColumn" {
-                cell.textField?.stringValue = makes[row]
-                return cell
-            }
-            
-            if column.identifier.rawValue == "ModelColumn" {
-                cell.textField?.stringValue = models[row]
-                return cell
-            }
-            
-            if column.identifier.rawValue == "YearColumn" {
-                cell.textField?.stringValue = "\(years[row])"
-                return cell
-            }
-            
-        }
-        
-        return nil
-    }
-}
-
-
