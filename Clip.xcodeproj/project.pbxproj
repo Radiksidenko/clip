@@ -15,6 +15,9 @@
 		7C0CE4B822A154E8007F0BCC /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0CE4B722A154E8007F0BCC /* EventMonitor.swift */; };
 		7C0CE4BA22A154FB007F0BCC /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0CE4B922A154FB007F0BCC /* PasteboardMonitor.swift */; };
 		7C0CE4BC22A15519007F0BCC /* NSViewController+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0CE4BB22A15519007F0BCC /* NSViewController+Storyboard.swift */; };
+		7CA50F1322B2BE5E00A07427 /* PinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA50F1222B2BE5E00A07427 /* PinCodeViewController.swift */; };
+		7CA50F1522B2BE7800A07427 /* PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA50F1422B2BE7800A07427 /* PinCode.storyboard */; };
+		7CA50F1722B2D8E700A07427 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA50F1622B2D8E700A07427 /* UserDefaults.swift */; };
 		7CC18B1822A1583D0034F823 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC18B1722A1583D0034F823 /* Main.storyboard */; };
 		7CF1BE4022A3023100FC2885 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF1BE3F22A3023100FC2885 /* PasswordViewController.swift */; };
 		7CF1BE4422A30A8000FC2885 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF1BE4322A30A8000FC2885 /* Password.storyboard */; };
@@ -55,6 +58,9 @@
 		7C0CE4B722A154E8007F0BCC /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		7C0CE4B922A154FB007F0BCC /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		7C0CE4BB22A15519007F0BCC /* NSViewController+Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSViewController+Storyboard.swift"; sourceTree = "<group>"; };
+		7CA50F1222B2BE5E00A07427 /* PinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeViewController.swift; sourceTree = "<group>"; };
+		7CA50F1422B2BE7800A07427 /* PinCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinCode.storyboard; sourceTree = "<group>"; };
+		7CA50F1622B2D8E700A07427 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		7CC18B1722A1583D0034F823 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7CF1BE3F22A3023100FC2885 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		7CF1BE4322A30A8000FC2885 /* Password.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			children = (
 				7C0CE4B722A154E8007F0BCC /* EventMonitor.swift */,
 				7C0CE4B922A154FB007F0BCC /* PasteboardMonitor.swift */,
+				7CA50F1622B2D8E700A07427 /* UserDefaults.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -159,10 +166,20 @@
 		7C0CE4BE22A155A3007F0BCC /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				7CA50F1122B2BE3D00A07427 /* PinCode */,
 				7CF1BE4222A30A5D00FC2885 /* Password */,
 				7CF1BE4122A30A5500FC2885 /* Main */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		7CA50F1122B2BE3D00A07427 /* PinCode */ = {
+			isa = PBXGroup;
+			children = (
+				7CA50F1222B2BE5E00A07427 /* PinCodeViewController.swift */,
+				7CA50F1422B2BE7800A07427 /* PinCode.storyboard */,
+			);
+			path = PinCode;
 			sourceTree = "<group>";
 		};
 		7CF1BE4122A30A5500FC2885 /* Main */ = {
@@ -297,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA50F1522B2BE7800A07427 /* PinCode.storyboard in Resources */,
 				7C0CE48E22A1542A007F0BCC /* Assets.xcassets in Resources */,
 				7CC18B1822A1583D0034F823 /* Main.storyboard in Resources */,
 				7CF1BE4422A30A8000FC2885 /* Password.storyboard in Resources */,
@@ -330,8 +348,10 @@
 				7C0CE48C22A15429007F0BCC /* ViewController.swift in Sources */,
 				7C0CE48A22A15429007F0BCC /* AppDelegate.swift in Sources */,
 				7C0CE4BA22A154FB007F0BCC /* PasteboardMonitor.swift in Sources */,
+				7CA50F1722B2D8E700A07427 /* UserDefaults.swift in Sources */,
 				7C0CE4BC22A15519007F0BCC /* NSViewController+Storyboard.swift in Sources */,
 				7CF1BE4022A3023100FC2885 /* PasswordViewController.swift in Sources */,
+				7CA50F1322B2BE5E00A07427 /* PinCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +509,7 @@
 				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = ZRZR644LKA;
+				DEVELOPMENT_TEAM = FP2M4U8R98;
 				INFOPLIST_FILE = Clip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -508,7 +528,7 @@
 				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = ZRZR644LKA;
+				DEVELOPMENT_TEAM = FP2M4U8R98;
 				INFOPLIST_FILE = Clip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
