@@ -15,6 +15,7 @@ class DataUserDefaults {
     
     let keyPassword = "Password"
     let keyUserPasswords = "UserPasswords"
+    let keyLastVC = "LastVC"
    
     var password: String? {
         get {
@@ -26,6 +27,15 @@ class DataUserDefaults {
         }
     }
 
+    var lastVC: [String: Any]? {
+        get {
+            return defaults.dictionary(forKey: keyLastVC)
+        }
+        set {
+            defaults.set(newValue, forKey: keyLastVC)
+        }
+    }
+    
     func getUserPasswords() -> [Password] {
         if let data = defaults.value(forKey: keyUserPasswords) as? Data {
             if let passwords = try?
@@ -45,6 +55,11 @@ class DataUserDefaults {
         setPasswords(userPasswords)
     }
     
+    func delPass(_ index: Int) {
+        var userPasswords = getUserPasswords()
+        userPasswords.remove(at: index)
+        setPasswords(userPasswords)
+    }
     
     private func setPasswords(_ passwords: [Password]) {
         defaults.set(try? PropertyListEncoder().encode(passwords), forKey: keyUserPasswords)

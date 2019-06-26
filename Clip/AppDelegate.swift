@@ -19,6 +19,11 @@ final class AppDelegate: NSObject {
     
     @objc
     private func toggleMenuPopover(_ sender: Any?) {
+        
+        if popover.contentViewController != getLastVC() {
+            createPopover()
+        }
+        
         if popover.isShown {
             closePopover(sender)
         } else {
@@ -28,11 +33,34 @@ final class AppDelegate: NSObject {
 }
 
 extension AppDelegate: NSApplicationDelegate {
+    
+    func createPopover() {
+        let viewController = getLastVC()
+        popover.contentViewController = viewController
+    }
+    
+    func getLastVC() -> NSViewController {
+        
+        let main = ViewController.instantiateFromStoryboard()
+        
+        guard let lastVC = DataUserDefaults.instance.lastVC?.first,
+            let storyboardName = lastVC.value as? String else { return main }
+
+        let storyboard = NSStoryboard(name: storyboardName, bundle: nil)
+        let storyboardIdentifier = NSStoryboard.SceneIdentifier(lastVC.key)
+        
+        guard let viewController = storyboard
+            .instantiateController(withIdentifier: storyboardIdentifier) as? NSViewController else {
+            return main
+        }
+        
+        return viewController
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        let viewController = ViewController.instantiateFromStoryboard()
-        popover.contentViewController = viewController
-        
+        DataUserDefaults.instance.lastVC = nil
+        createPopover()
         setupMenuBarButton()
         setupEventMonitor()
         setupPasteboardMonitor()

@@ -9,11 +9,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <tableCellView identifier="LoginCellView" id="G6f-N1-fpm" customClass="LoginCellView" customModule="Clip" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="241" height="51"/>
+            <rect key="frame" x="0.0" y="0.0" width="241" height="30"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="FzW-mU-B8z">
-                    <rect key="frame" x="0.0" y="34" width="219" height="17"/>
+                    <rect key="frame" x="0.0" y="3" width="219" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="kr8-Kq-S6Y"/>
+                    </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="E2B-bM-xma">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -21,7 +24,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lH7-0Q-thG">
-                    <rect key="frame" x="211" y="20" width="36" height="35"/>
+                    <rect key="frame" x="211" y="-4" width="36" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="24" id="J1r-S7-MG2"/>
                         <constraint firstAttribute="height" constant="24" id="JKn-yc-ubn"/>
@@ -36,17 +39,17 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="lH7-0Q-thG" firstAttribute="top" secondItem="G6f-N1-fpm" secondAttribute="top" id="9DT-02-def"/>
                 <constraint firstAttribute="trailing" secondItem="lH7-0Q-thG" secondAttribute="trailing" id="Ksl-3X-f05"/>
+                <constraint firstItem="FzW-mU-B8z" firstAttribute="top" secondItem="lH7-0Q-thG" secondAttribute="top" id="Mrg-GH-ijM"/>
                 <constraint firstItem="lH7-0Q-thG" firstAttribute="leading" secondItem="FzW-mU-B8z" secondAttribute="trailing" id="OU8-8D-DbT"/>
-                <constraint firstItem="FzW-mU-B8z" firstAttribute="top" secondItem="G6f-N1-fpm" secondAttribute="top" id="gCc-VS-02b"/>
+                <constraint firstItem="lH7-0Q-thG" firstAttribute="top" secondItem="G6f-N1-fpm" secondAttribute="top" constant="3" id="pnN-2O-8ee"/>
                 <constraint firstItem="FzW-mU-B8z" firstAttribute="leading" secondItem="G6f-N1-fpm" secondAttribute="leading" constant="2" id="v0D-7R-Pwk"/>
             </constraints>
             <connections>
                 <outlet property="text" destination="FzW-mU-B8z" id="mmC-Bo-y74"/>
                 <outlet property="textField" destination="FzW-mU-B8z" id="Hsd-xc-f2w"/>
             </connections>
-            <point key="canvasLocation" x="78.5" y="174.5"/>
+            <point key="canvasLocation" x="78.5" y="164"/>
         </tableCellView>
     </objects>
 </document>

@@ -34,6 +34,8 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DataUserDefaults.instance.lastVC = ["ViewController": "Main"]
+        
         setupClipboardButton()
         setupTextViews()
     }

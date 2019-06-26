@@ -11,3 +11,8 @@ struct Password: Codable {
     let password: String
     let site: String
 }
+
+enum Screens {
+    case ViewController(ViewController)
+    case PasswordViewController(PasswordViewController)
+}

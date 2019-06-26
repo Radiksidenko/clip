@@ -16,6 +16,9 @@ class PasswordViewController: NSViewController {
     @IBOutlet weak var addPassword: NSSecureTextField!
     @IBOutlet weak var addSite: NSTextField!
     
+    let heightOfRow: CGFloat = 30
+    let defaults = DataUserDefaults.instance
+    
     private var viewStoryboard: NSStoryboard {
         return NSStoryboard(name: "Main", bundle: nil)
     }
@@ -24,16 +27,24 @@ class PasswordViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        notes.title = "Notes"
-        allPassword = DataUserDefaults.instance.getUserPasswords()
         
+        defaults.lastVC = ["PasswordViewController": "Password"]
+        
+        notes.title = "Notes"
+        reloadData()
         tableView.register(NSNib(nibNamed: "LoginCell", bundle: nil),
                            forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LoginCellView"))
+        tableView.doubleAction = #selector(tableViewDoubleClick(_:))
+    }
+    
+    private func reloadData() {
+        allPassword = defaults.getUserPasswords()
+        tableView.reloadData()
     }
     
     @IBAction func notesClick(_ sender: Any) {
-        let vcStores = self.viewStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("ViewController"))
-            as! NSViewController
+        let sceneIdentifier =  NSStoryboard.SceneIdentifier("ViewController")
+        let vcStores = self.viewStoryboard.instantiateController(withIdentifier: sceneIdentifier) as! NSViewController
         self.view.window?.contentViewController = vcStores
     }
 
@@ -42,13 +53,21 @@ class PasswordViewController: NSViewController {
             let newRow =  Password(login: addLogin.stringValue,
                                    password: addPassword.stringValue,
                                    site: addSite.stringValue)
-            DataUserDefaults.instance.addNewPass(newRow)
+            defaults.addNewPass(newRow)
+            reloadData()
         }
         
         addLogin.isHidden = !addLogin.isHidden
         addPassword.isHidden = !addPassword.isHidden
         addSite.isHidden = !addSite.isHidden
     }
+    
+    @objc func tableViewDoubleClick(_ sender:AnyObject) {
+        print(tableView.selectedRow, "🧿")
+        defaults.delPass(tableView.selectedRow)
+        reloadData()
+    }
+    
 }
 
 extension PasswordViewController: NSTableViewDataSource {
@@ -60,26 +79,25 @@ extension PasswordViewController: NSTableViewDataSource {
 
 extension PasswordViewController: NSTableViewDelegate {
     
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return heightOfRow
+    }
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         guard let column = tableColumn else { return nil }
+        let interfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "LoginCellView")
         
-        if let cell = tableView.makeView(withIdentifier: column.identifier, owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: interfaceItemIdentifier, owner: nil) as? LoginCellView {
             
             if column.identifier.rawValue == "Login" {
-                
-                let interfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "LoginCellView")
-                
-                guard let cel = tableView.makeView(withIdentifier: interfaceItemIdentifier,
-                                                   owner: nil) as? LoginCellView else {
-                    return nil
-                }
-                cel.text.stringValue = allPassword[row].login
-                return cel
+                cell.text.stringValue = allPassword[row].login
+                return cell
             }
             
             if column.identifier.rawValue == "Password" {
-                cell.textField?.stringValue = allPassword[row].password
+                cell.text.stringValue = allPassword[row].password
+                cell.password = true
                 return cell
             }
             
