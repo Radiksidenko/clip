@@ -12,13 +12,21 @@ import Cocoa
 class PasswordViewController: NSViewController {
     @IBOutlet weak var notes: NSButton!
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var addLogin: NSTextField!
+    @IBOutlet weak var addPassword: NSSecureTextField!
+    @IBOutlet weak var addSite: NSTextField!
     
-    let makes = ["Ford", "Subaru", "Ford", "Toyota", "Chevy", "Subaru", "Ford"]
-    let models = ["Mustang", "Forester", "Bronco", "Tacoma", "Blazer", "Outback", "Ranger"]
-    let years = [2018, 2011, 1977, 1994, 1991, 2001, 1998]
+    private var viewStoryboard: NSStoryboard {
+        return NSStoryboard(name: "Main", bundle: nil)
+    }
+    
+    var allPassword: [Password] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         notes.title = "Notes"
+        allPassword = DataUserDefaults.instance.getUserPasswords()
+        
         tableView.register(NSNib(nibNamed: "LoginCell", bundle: nil),
                            forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LoginCellView"))
     }
@@ -28,16 +36,25 @@ class PasswordViewController: NSViewController {
             as! NSViewController
         self.view.window?.contentViewController = vcStores
     }
-    private var viewStoryboard: NSStoryboard {
-        return NSStoryboard(name: "Main", bundle: nil)
+
+    @IBAction func addRow(_ sender: Any) {
+        if addLogin.isHidden == false {
+            let newRow =  Password(login: addLogin.stringValue,
+                                   password: addPassword.stringValue,
+                                   site: addSite.stringValue)
+            DataUserDefaults.instance.addNewPass(newRow)
+        }
+        
+        addLogin.isHidden = !addLogin.isHidden
+        addPassword.isHidden = !addPassword.isHidden
+        addSite.isHidden = !addSite.isHidden
     }
-    
 }
 
 extension PasswordViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return makes.count
+        return allPassword.count
     }
 }
 
@@ -50,20 +67,24 @@ extension PasswordViewController: NSTableViewDelegate {
         if let cell = tableView.makeView(withIdentifier: column.identifier, owner: nil) as? NSTableCellView {
             
             if column.identifier.rawValue == "Login" {
-                guard let cel = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LoginCellView"), owner: nil) as? LoginCellView else {
+                
+                let interfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "LoginCellView")
+                
+                guard let cel = tableView.makeView(withIdentifier: interfaceItemIdentifier,
+                                                   owner: nil) as? LoginCellView else {
                     return nil
                 }
-                cel.text.stringValue = makes[row]
+                cel.text.stringValue = allPassword[row].login
                 return cel
             }
             
             if column.identifier.rawValue == "Password" {
-                cell.textField?.stringValue = models[row]
+                cell.textField?.stringValue = allPassword[row].password
                 return cell
             }
             
             if column.identifier.rawValue == "Site" {
-                cell.textField?.stringValue = "\(years[row])"
+                cell.textField?.stringValue = allPassword[row].site
                 return cell
             }
             

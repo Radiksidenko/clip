@@ -12,23 +12,46 @@ class PinCodeViewController: NSViewController {
   
     @IBOutlet private weak var infoText: NSTextField!
     @IBOutlet private weak var pinCodeEnter: NSSecureTextField!
-    private var pin = "42"
+    @IBOutlet weak var rightButton: NSButton!
+    
+    var pin: String?
+    var isNewCode: Bool = false
+    
+    private var viewStoryboard: NSStoryboard {
+        return NSStoryboard(name: "Main", bundle: nil)
+    }
+    private var passwordStoryboard: NSStoryboard {
+        return NSStoryboard(name: "Password", bundle: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        pin = DataUserDefaults.instance.password
+    }
     
     @IBAction private func sendInput(_ sender: NSTextField) {
-        print(sender.stringValue)
-        if sender.stringValue != pin {
+        if isNewCode {
+            setPassword(pinCodeEnter.stringValue)
+        } else if sender.stringValue != pin {
             infoText.stringValue = "wrong password"
         } else {
             nextToPassWords()
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+   
     
     @IBAction private func passWord(_ sender: Any) {
+        if isNewCode {
+            setPassword(pinCodeEnter.stringValue)
+        }
         nextToPassWords()
+    }
+    
+    @IBAction func setPinCode(_ sender: Any) {
+        infoText.stringValue = "Enter your password but all saves are removed"
+        rightButton.stringValue = "OK"
+        isNewCode = true
     }
     
     @IBAction func notesClick(_ sender: Any) {
@@ -36,13 +59,8 @@ class PinCodeViewController: NSViewController {
             as! NSViewController
         self.view.window?.contentViewController = vcStores
     }
-    private var viewStoryboard: NSStoryboard {
-        return NSStoryboard(name: "Main", bundle: nil)
-    }
     
-    private var passwordStoryboard: NSStoryboard {
-        return NSStoryboard(name: "Password", bundle: nil)
-    }
+
    
     private func nextToPassWords() {
         if pinCodeEnter.stringValue == pin {
@@ -53,6 +71,13 @@ class PinCodeViewController: NSViewController {
             infoText.stringValue = "wrong password"
         }
         
+    }
+    
+    private func setPassword(_ password: String) {
+        DataUserDefaults.instance.password = password
+        infoText.stringValue = "Password successfully changed"
+        pin = DataUserDefaults.instance.password
+        isNewCode = false
     }
     
 }

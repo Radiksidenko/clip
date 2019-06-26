@@ -70,12 +70,12 @@ class ViewController: NSViewController {
     }
     
     @IBAction func passWord(_ sender: Any) {
-        let vcStores = self.passwordStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("PinCodeViewController"))
+        let vcStores = self.pinCodeStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("PinCodeViewController"))
             as! NSViewController
         self.view.window?.contentViewController = vcStores
     }
     
-    private var passwordStoryboard: NSStoryboard {
+    private var pinCodeStoryboard: NSStoryboard {
         return NSStoryboard(name: "PinCode", bundle: nil)
     }
 }

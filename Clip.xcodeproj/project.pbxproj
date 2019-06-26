@@ -17,12 +17,13 @@
 		7C0CE4BC22A15519007F0BCC /* NSViewController+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0CE4BB22A15519007F0BCC /* NSViewController+Storyboard.swift */; };
 		7CA50F1322B2BE5E00A07427 /* PinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA50F1222B2BE5E00A07427 /* PinCodeViewController.swift */; };
 		7CA50F1522B2BE7800A07427 /* PinCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA50F1422B2BE7800A07427 /* PinCode.storyboard */; };
-		7CA50F1722B2D8E700A07427 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA50F1622B2D8E700A07427 /* UserDefaults.swift */; };
+		7CA50F1722B2D8E700A07427 /* DataUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA50F1622B2D8E700A07427 /* DataUserDefaults.swift */; };
 		7CC18B1822A1583D0034F823 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CC18B1722A1583D0034F823 /* Main.storyboard */; };
 		7CF1BE4022A3023100FC2885 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF1BE3F22A3023100FC2885 /* PasswordViewController.swift */; };
 		7CF1BE4422A30A8000FC2885 /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF1BE4322A30A8000FC2885 /* Password.storyboard */; };
 		7CF1BE4822A30D5600FC2885 /* LoginCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF1BE4722A30D5600FC2885 /* LoginCellView.swift */; };
 		7CF1BE4B22A30DB100FC2885 /* LoginCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF1BE4A22A30DB100FC2885 /* LoginCell.xib */; };
+		7CFF7A9122B2E05300A1C3A7 /* Passwords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFF7A9022B2E05300A1C3A7 /* Passwords.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,12 +61,13 @@
 		7C0CE4BB22A15519007F0BCC /* NSViewController+Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSViewController+Storyboard.swift"; sourceTree = "<group>"; };
 		7CA50F1222B2BE5E00A07427 /* PinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeViewController.swift; sourceTree = "<group>"; };
 		7CA50F1422B2BE7800A07427 /* PinCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PinCode.storyboard; sourceTree = "<group>"; };
-		7CA50F1622B2D8E700A07427 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		7CA50F1622B2D8E700A07427 /* DataUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUserDefaults.swift; sourceTree = "<group>"; };
 		7CC18B1722A1583D0034F823 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7CF1BE3F22A3023100FC2885 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		7CF1BE4322A30A8000FC2885 /* Password.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
 		7CF1BE4722A30D5600FC2885 /* LoginCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCellView.swift; sourceTree = "<group>"; };
 		7CF1BE4A22A30DB100FC2885 /* LoginCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginCell.xib; sourceTree = "<group>"; };
+		7CFF7A9022B2E05300A1C3A7 /* Passwords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passwords.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		7C0CE48822A15429007F0BCC /* Clip */ = {
 			isa = PBXGroup;
 			children = (
+				7CFF7A8F22B2E03C00A1C3A7 /* Model */,
 				7C0CE48922A15429007F0BCC /* AppDelegate.swift */,
 				7C0CE4BE22A155A3007F0BCC /* Presentation */,
 				7C0CE4BD22A15523007F0BCC /* Extensions */,
@@ -150,7 +153,7 @@
 			children = (
 				7C0CE4B722A154E8007F0BCC /* EventMonitor.swift */,
 				7C0CE4B922A154FB007F0BCC /* PasteboardMonitor.swift */,
-				7CA50F1622B2D8E700A07427 /* UserDefaults.swift */,
+				7CA50F1622B2D8E700A07427 /* DataUserDefaults.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -208,6 +211,14 @@
 				7CF1BE4A22A30DB100FC2885 /* LoginCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7CFF7A8F22B2E03C00A1C3A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7CFF7A9022B2E05300A1C3A7 /* Passwords.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,12 +354,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CFF7A9122B2E05300A1C3A7 /* Passwords.swift in Sources */,
 				7C0CE4B822A154E8007F0BCC /* EventMonitor.swift in Sources */,
 				7CF1BE4822A30D5600FC2885 /* LoginCellView.swift in Sources */,
 				7C0CE48C22A15429007F0BCC /* ViewController.swift in Sources */,
 				7C0CE48A22A15429007F0BCC /* AppDelegate.swift in Sources */,
 				7C0CE4BA22A154FB007F0BCC /* PasteboardMonitor.swift in Sources */,
-				7CA50F1722B2D8E700A07427 /* UserDefaults.swift in Sources */,
+				7CA50F1722B2D8E700A07427 /* DataUserDefaults.swift in Sources */,
 				7C0CE4BC22A15519007F0BCC /* NSViewController+Storyboard.swift in Sources */,
 				7CF1BE4022A3023100FC2885 /* PasswordViewController.swift in Sources */,
 				7CA50F1322B2BE5E00A07427 /* PinCodeViewController.swift in Sources */,
