@@ -20,7 +20,7 @@ final class AppDelegate: NSObject {
     @objc
     private func toggleMenuPopover(_ sender: Any?) {
         
-        if popover.contentViewController != getLastVC() {
+        if popover.contentViewController?.className != getLastVC().className {
             createPopover()
         }
         
